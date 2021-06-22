@@ -28,6 +28,10 @@ public class Developer {
     public void setNbSkillYear(int nbSkillYear) {
         this.nbSkillYear = nbSkillYear;
     }
+    @Override
+    public String toString(){
+        return "Name =" + this.getName() + " Years = " + this.getNbSkillYear();
+    }
 }
 
 

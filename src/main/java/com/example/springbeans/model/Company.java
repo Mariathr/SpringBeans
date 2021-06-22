@@ -28,4 +28,9 @@ public class Company {
     public void setDevJava(Developer devJava) {
         this.devJava = devJava;
     }
+
+    @Override
+    public String toString(){
+        return "Company :" + getName() + " " + getDevJava();
+    }
 }

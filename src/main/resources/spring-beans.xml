@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    <context:annotation-config/>
 
     <bean id="houseBean1" class="com.example.springbeans.model.House">
         <constructor-arg value="Euratechnologies, Lille 59000" type="java.lang.String"/>
@@ -16,6 +22,41 @@
     <bean id="companyBean" class="com.example.springbeans.model.Company">
         <property name="name" value="Boris company"></property>
         <property name="devJava" ref="developerBean" ></property>
+    </bean>
+    <bean id="serviceBean" class="com.example.springbeans.model.Service" scope="prototype">
+        <property name="message" value="premier message "></property>
+    </bean>
+
+    <!-- Définition du bean Adress avec comme id adress setteer -->
+    <bean id="firstAddress" class="com.example.springbeans.model.Address">
+        <property name="fullAddress" value="Gare Lille Flandres 59000, Batiment A, Etage 4"/>
+    </bean>
+
+    <!-- Définition du bean client -->
+    <!-- injection automatique de la prop Adresse du client -->
+    <bean id="customerBean" class="com.example.springbeans.model.Customer" autowire="byName">
+    <property name="name" value="Agence de Formation CEFIM"/>
+    </bean>
+
+    <!-- KungFu injection par constructor -->
+    <bean id="KungfuBean" class="com.example.springbeans.model.KungFu">
+        <constructor-arg value="Kungfu petit 123" type="java.lang.String"/>
+    </bean>
+
+    <bean id="pandaBean" class="com.example.springbeans.model.Panda" autowire="constructor">
+    </bean>
+
+
+    <!-- Anotation -->
+    <bean id="personAnotation" class="com.example.springbeans.model.Person">
+        <constructor-arg value="Maria" type="java.lang.String"/>
+        <constructor-arg value="Teixeira" type="java.lang.String"/>
+        <constructor-arg value="Maria@gmail.com" type="java.lang.String"/>
+    </bean>
+
+    <bean id="customerAnotation" class="com.example.springbeans.model.Customer1">
+        <constructor-arg  value="Active" type="java.lang.String"/>
+        <constructor-arg value="7" type="int"/>
 
     </bean>
 </beans>
